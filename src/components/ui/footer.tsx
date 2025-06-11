@@ -94,10 +94,10 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="space-y-4 pointer-events-none">
-            <h4 className="text-lg font-semibold text-white">Let's Connect</h4>
+            <h4 className="text-lg font-semibold text-white">Let&apos;s Connect</h4>
             <p className="text-neutral-300">
               Ready to bring your next project to life? 
-              I'm always interested in discussing new opportunities and challenges.
+              I&apos;m always interested in discussing new opportunities and challenges.
             </p>
             <Link
               href="/contact"

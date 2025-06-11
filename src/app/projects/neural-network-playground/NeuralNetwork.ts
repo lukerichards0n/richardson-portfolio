@@ -42,7 +42,6 @@ export const Problems = {
       return data;
     },
     evaluate(x: number, y: number): number {
-      const r = Math.sqrt(x * x + y * y);
       const theta = Math.atan2(y, x);
       const normalizedTheta = theta + Math.PI;
       return (normalizedTheta % (2 * Math.PI) > Math.PI) ? 1 : 0;

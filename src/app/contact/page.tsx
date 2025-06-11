@@ -186,7 +186,7 @@ export default function ContactPage() {
         >
           <h3 className="text-2xl font-semibold mb-4">Ready to Start Your Project?</h3>
           <p className="text-neutral-300 mb-8">
-            Let's discuss how we can work together to achieve your goals. 
+            Let&apos;s discuss how we can work together to achieve your goals. 
             I look forward to hearing from you!
           </p>
           <a 

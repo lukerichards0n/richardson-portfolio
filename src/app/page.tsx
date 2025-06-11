@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
