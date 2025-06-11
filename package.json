@@ -9,19 +9,33 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.34.0",
+    "@tailwindcss/cli": "^4.1.8",
+    "@types/katex": "^0.16.7",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "katex": "^0.16.22",
+    "lucide-react": "^0.514.0",
+    "motion": "^12.16.0",
+    "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "react-katex": "^3.1.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@types/react-katex": "^3.0.4",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4.1.8",
+    "tw-animate-css": "^1.3.4",
+    "typescript": "^5"
   }
 }
