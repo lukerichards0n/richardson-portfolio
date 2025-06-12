@@ -322,95 +322,72 @@ export default function TetrisPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col gap-4 w-full lg:w-[320px]"
             >
-              {/* Controls */}
+              {/* Next Piece */}
               <div className={cn(
                 "relative overflow-hidden rounded-3xl",
                 "bg-neutral-900",
                 "border border-neutral-800/50",
                 "shadow-xl p-6"
               )}>
-                <h3 className="text-lg font-semibold text-white mb-4">Controls</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
-                      <ArrowLeft className="w-4 h-4 text-neutral-400" />
+                <h3 className="text-lg font-semibold text-white mb-4">Next Piece</h3>
+                <div className="bg-black/30 rounded-xl p-4 h-32 flex items-center justify-center border border-neutral-800/50 backdrop-blur-sm">
+                  {nextPiece && (
+                    <div className="relative" style={{ 
+                      width: `${nextPiece.shape[0].length * 24}px`,
+                      height: `${nextPiece.shape.length * 24}px` 
+                    }}>
+                      {nextPiece.shape.map((row, y) =>
+                        row.map((value, x) => value ? (
+                          <div
+                            key={`next-${x}-${y}`}
+                            className={cn(
+                              "absolute rounded-sm bg-gradient-to-br",
+                              "border border-white/30 shadow-md",
+                              nextPiece.color
+                            )}
+                            style={{
+                              left: `${x * 24}px`,
+                              top: `${y * 24}px`,
+                              width: '22px',
+                              height: '22px',
+                            }}
+                          />
+                        ) : null)
+                      )}
                     </div>
-                    <span className="text-neutral-300">Move Left</span>
+                  )}
+                </div>
+              </div>
+              
+              {/* Stats */}
+              <div className={cn(
+                "relative overflow-hidden rounded-3xl",
+                "bg-neutral-900",
+                "border border-neutral-800/50",
+                "shadow-xl p-6"
+              )}>
+                <h3 className="text-lg font-semibold text-white mb-4">Statistics</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Score</h4>
+                    <p className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                      {score}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-neutral-400" />
-                    </div>
-                    <span className="text-neutral-300">Move Right</span>
+                  <div>
+                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">High Score</h4>
+                    <p className="text-2xl font-semibold text-amber-500">{highScore}</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
-                      <ArrowDown className="w-4 h-4 text-neutral-400" />
-                    </div>
-                    <span className="text-neutral-300">Soft Drop</span>
+                  <div>
+                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Level</h4>
+                    <p className="text-xl font-semibold text-white">{level}</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
-                      <RotateCw className="w-4 h-4 text-neutral-400" />
-                    </div>
-                    <span className="text-neutral-300">Rotate (↑)</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
-                      <Space className="w-4 h-4 text-neutral-400" />
-                    </div>
-                    <span className="text-neutral-300">Hard Drop (Space)</span>
+                  <div>
+                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Lines</h4>
+                    <p className="text-xl font-semibold text-white">{lines}</p>
                   </div>
                 </div>
               </div>
-
-              {/* Game Control */}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  if (gameState === 'ready' || gameState === 'gameOver') {
-                    initGame();
-                  } else if (gameState === 'playing') {
-                    setGameState('paused');
-                  } else if (gameState === 'paused') {
-                    setGameState('playing');
-                  }
-                }}
-                className={cn(
-                  "relative px-6 py-3 rounded-2xl font-medium",
-                  "bg-white text-black",
-                  "hover:bg-neutral-100",
-                  "transition-all duration-200",
-                  "flex items-center justify-center gap-2",
-                  "shadow-lg hover:shadow-xl"
-                )}
-              >
-                {gameState === 'ready' && (
-                  <>
-                    <Play className="w-5 h-5" />
-                    Start Game
-                  </>
-                )}
-                {gameState === 'playing' && (
-                  <>
-                    <Pause className="w-5 h-5" />
-                    Pause
-                  </>
-                )}
-                {gameState === 'paused' && (
-                  <>
-                    <Play className="w-5 h-5" />
-                    Resume
-                  </>
-                )}
-                {gameState === 'gameOver' && (
-                  <>
-                    <RotateCw className="w-5 h-5" />
-                    Play Again
-                  </>
-                )}
-              </motion.button>
             </motion.div>
 
             {/* Game Board */}
@@ -562,74 +539,95 @@ export default function TetrisPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col gap-4 w-full lg:w-[320px]"
             >
-              {/* Next Piece */}
+              {/* Controls */}
               <div className={cn(
                 "relative overflow-hidden rounded-3xl",
                 "bg-neutral-900",
                 "border border-neutral-800/50",
                 "shadow-xl p-6"
               )}>
-                <h3 className="text-lg font-semibold text-white mb-4">Next Piece</h3>
-                <div className="bg-black/30 rounded-xl p-4 h-32 flex items-center justify-center border border-neutral-800/50 backdrop-blur-sm">
-                  {nextPiece && (
-                    <div className="relative" style={{ 
-                      width: `${nextPiece.shape[0].length * 24}px`,
-                      height: `${nextPiece.shape.length * 24}px` 
-                    }}>
-                      {nextPiece.shape.map((row, y) =>
-                        row.map((value, x) => value ? (
-                          <div
-                            key={`next-${x}-${y}`}
-                            className={cn(
-                              "absolute rounded-sm bg-gradient-to-br",
-                              "border border-white/30 shadow-md",
-                              nextPiece.color
-                            )}
-                            style={{
-                              left: `${x * 24}px`,
-                              top: `${y * 24}px`,
-                              width: '22px',
-                              height: '22px',
-                            }}
-                          />
-                        ) : null)
-                      )}
+                <h3 className="text-lg font-semibold text-white mb-4">Controls</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
+                      <ArrowLeft className="w-4 h-4 text-neutral-400" />
                     </div>
-                  )}
-                </div>
-              </div>
-              
-              {/* Stats */}
-              <div className={cn(
-                "relative overflow-hidden rounded-3xl",
-                "bg-neutral-900",
-                "border border-neutral-800/50",
-                "shadow-xl p-6"
-              )}>
-                <h3 className="text-lg font-semibold text-white mb-4">Statistics</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Score</h4>
-                    <p className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-                      {score}
-                    </p>
+                    <span className="text-neutral-300">Move Left</span>
                   </div>
-                  <div>
-                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">High Score</h4>
-                    <p className="text-2xl font-semibold text-amber-500">{highScore}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-neutral-400" />
+                    </div>
+                    <span className="text-neutral-300">Move Right</span>
                   </div>
-                  <div>
-                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Level</h4>
-                    <p className="text-xl font-semibold text-white">{level}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
+                      <ArrowDown className="w-4 h-4 text-neutral-400" />
+                    </div>
+                    <span className="text-neutral-300">Soft Drop</span>
                   </div>
-                  <div>
-                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider">Lines</h4>
-                    <p className="text-xl font-semibold text-white">{lines}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
+                      <RotateCw className="w-4 h-4 text-neutral-400" />
+                    </div>
+                    <span className="text-neutral-300">Rotate (↑)</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-neutral-800/50 flex items-center justify-center">
+                      <Space className="w-4 h-4 text-neutral-400" />
+                    </div>
+                    <span className="text-neutral-300">Hard Drop (Space)</span>
                   </div>
                 </div>
               </div>
-              
-              
+
+              {/* Game Control */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  if (gameState === 'ready' || gameState === 'gameOver') {
+                    initGame();
+                  } else if (gameState === 'playing') {
+                    setGameState('paused');
+                  } else if (gameState === 'paused') {
+                    setGameState('playing');
+                  }
+                }}
+                className={cn(
+                  "relative px-6 py-3 rounded-2xl font-medium",
+                  "bg-white text-black",
+                  "hover:bg-neutral-100",
+                  "transition-all duration-200",
+                  "flex items-center justify-center gap-2",
+                  "shadow-lg hover:shadow-xl"
+                )}
+              >
+                {gameState === 'ready' && (
+                  <>
+                    <Play className="w-5 h-5" />
+                    Start Game
+                  </>
+                )}
+                {gameState === 'playing' && (
+                  <>
+                    <Pause className="w-5 h-5" />
+                    Pause
+                  </>
+                )}
+                {gameState === 'paused' && (
+                  <>
+                    <Play className="w-5 h-5" />
+                    Resume
+                  </>
+                )}
+                {gameState === 'gameOver' && (
+                  <>
+                    <RotateCw className="w-5 h-5" />
+                    Play Again
+                  </>
+                )}
+              </motion.button>
             </motion.div>
           </div>
         </div>
