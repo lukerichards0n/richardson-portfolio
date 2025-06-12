@@ -14,7 +14,7 @@ function parseError(error: string) {
     const e = m ? m[1] : error;
     const err = JSON.parse(e);
     return err.message || error;
-  } catch (_) {
+  } catch {
     return error;
   }
 }
