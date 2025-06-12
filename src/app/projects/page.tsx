@@ -37,7 +37,8 @@ export default function ProjectsPage() {
       category: "Game",
       title: "Tetris",
       src: "/tetris.png",
-      demoUrl: "#", // placeholder
+      demoUrl: "/projects/tetris",
+      docsUrl: "/projects/tetris/docs",
     },
   ];
 

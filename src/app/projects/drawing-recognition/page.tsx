@@ -3,9 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { LoaderCircle, SendHorizontal, Trash2, X } from "lucide-react";
+import { LoaderCircle, SendHorizontal, Trash2, X, Palette } from "lucide-react";
 import Link from "next/link";
 import { Content, GoogleGenAI, Modality } from "@google/genai";
+import { cn } from "@/lib/utils";
 
 function parseError(error: string) {
   const regex = /{"error":(.*)}/gm;
@@ -20,7 +21,7 @@ function parseError(error: string) {
 }
 
 export default function DrawingRecognitionPage() {
-  // Add slider styles to match neural network playground
+  // Add slider styles to match design system
   const sliderStyles = `
     .slider::-webkit-slider-thumb {
       appearance: none;
@@ -29,6 +30,12 @@ export default function DrawingRecognitionPage() {
       border-radius: 50%;
       background: #ffffff;
       cursor: pointer;
+      border: 2px solid #404040;
+      transition: all 0.2s ease;
+    }
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     .slider::-moz-range-thumb {
       width: 20px;
@@ -36,7 +43,12 @@ export default function DrawingRecognitionPage() {
       border-radius: 50%;
       background: #ffffff;
       cursor: pointer;
-      border: none;
+      border: 2px solid #404040;
+      transition: all 0.2s ease;
+    }
+    .slider::-moz-range-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
   `;
 
@@ -324,106 +336,152 @@ export default function DrawingRecognitionPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: sliderStyles }} />
       <div className="min-h-screen bg-black pt-20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="pt-12 pb-8"
           >
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-6"
+              className={cn(
+                "inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200",
+                "transition-colors duration-200 mb-6",
+                "hover:translate-x-[-2px]"
+              )}
             >
               <IconArrowLeft className="w-5 h-5" />
               Back to Projects
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               AI Co-Drawing
             </h1>
-            <p className="text-lg text-neutral-300">
-              Draw on the canvas and let AI transform and enhance your artwork.
+            <p className="text-lg md:text-xl text-neutral-300 max-w-2xl">
+              Draw on the canvas and let AI transform and enhance your artwork with intelligent suggestions.
             </p>
           </motion.div>
 
-                  {/* Main Content */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-6">
-          {/* Canvas Area */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
-          >
-            <h2 className="text-xl font-semibold text-white mb-4">Canvas</h2>
-            <div className="relative bg-neutral-950 rounded-xl overflow-hidden">
-              <canvas
-                ref={canvasRef}
-                width={960}
-                height={540}
-                onMouseDown={startDrawing}
-                onMouseMove={draw}
-                onMouseUp={stopDrawing}
-                onMouseLeave={stopDrawing}
-                onTouchStart={startDrawing}
-                onTouchMove={draw}
-                onTouchEnd={stopDrawing}
-                className="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-white cursor-crosshair touch-none"
-              />
-            </div>
-          </motion.div>
-
-          {/* Settings Panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6 space-y-6"
-          >
-              <h2 className="text-xl font-semibold text-white">Settings</h2>
+          {/* Main Content */}
+          <div className="grid grid-cols-1 xl:grid-cols-[1fr_360px] gap-8 pb-16">
+            {/* Canvas Area */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className={cn(
+                "relative overflow-hidden rounded-2xl",
+                "bg-neutral-900 border border-neutral-800",
+                "shadow-xl",
+                "p-6"
+              )}
+            >
+              <div className="mb-6">
+                <h2 className="text-xl font-semibold text-white mb-2">Canvas</h2>
+                <p className="text-sm text-neutral-400">
+                  Draw your ideas and watch AI bring them to life
+                </p>
+              </div>
               
-              {/* Drawing Tools */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-white">Drawing Tools</h3>
+              <div className={cn(
+                "relative bg-white rounded-xl overflow-hidden",
+                "shadow-inner border border-neutral-200"
+              )}>
+                <canvas
+                  ref={canvasRef}
+                  width={960}
+                  height={540}
+                  onMouseDown={startDrawing}
+                  onMouseMove={draw}
+                  onMouseUp={stopDrawing}
+                  onMouseLeave={stopDrawing}
+                  onTouchStart={startDrawing}
+                  onTouchMove={draw}
+                  onTouchEnd={stopDrawing}
+                  className="w-full h-[300px] md:h-[400px] lg:h-[500px] cursor-crosshair touch-none"
+                />
+              </div>
+            </motion.div>
+
+            {/* Settings Panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-6"
+            >
+              {/* Drawing Tools Card */}
+              <div className={cn(
+                "relative overflow-hidden rounded-2xl",
+                "bg-neutral-900 border border-neutral-800",
+                "shadow-lg p-6"
+              )}>
+                <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                  <Palette className="w-5 h-5" />
+                  Drawing Tools
+                </h3>
                 
-                {/* Brush Size */}
-                <div className="setting">
-                  <label className="block text-sm text-neutral-300 mb-2">
-                    Brush Size: <span className="font-semibold">{brushSize}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min={1}
-                    max={50}
-                    step={1}
-                    value={brushSize}
-                    onChange={(e) => setBrushSize(parseInt(e.target.value))}
-                    className="w-full h-2 bg-neutral-700 rounded-lg appearance-none cursor-pointer slider"
-                  />
-                </div>
-                
-                {/* Pen Color */}
-                <div className="setting">
-                  <label className="block text-sm text-neutral-300 mb-2">Pen Color</label>
-                  <button
-                    style={{ backgroundColor: penColor }}
-                    onClick={openColorPicker}
-                    className="w-full h-8 rounded-lg border border-neutral-700 cursor-pointer"
-                  />
-                  <input
-                    ref={colorInputRef}
-                    type="color"
-                    value={penColor}
-                    onChange={handleColorChange}
-                    className="hidden"
-                  />
-                </div>
-                
-                <div className="setting">
+                <div className="space-y-6">
+                  {/* Brush Size */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-neutral-300">
+                      Brush Size
+                      <span className="ml-2 px-2 py-0.5 bg-neutral-800 rounded text-xs font-mono">
+                        {brushSize}px
+                      </span>
+                    </label>
+                    <input
+                      type="range"
+                      min={1}
+                      max={50}
+                      step={1}
+                      value={brushSize}
+                      onChange={(e) => setBrushSize(parseInt(e.target.value))}
+                      className={cn(
+                        "w-full h-2 bg-neutral-700 rounded-lg appearance-none cursor-pointer slider",
+                        "focus:outline-none focus:ring-2 focus:ring-white/20"
+                      )}
+                    />
+                  </div>
+                  
+                  {/* Pen Color */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-neutral-300">
+                      Pen Color
+                    </label>
+                    <button
+                      onClick={openColorPicker}
+                      className={cn(
+                        "w-full h-12 rounded-lg border-2 border-neutral-700",
+                        "hover:border-neutral-600 transition-colors duration-200",
+                        "focus:outline-none focus:ring-2 focus:ring-white/20",
+                        "relative overflow-hidden"
+                      )}
+                      style={{ backgroundColor: penColor }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/10" />
+                    </button>
+                    <input
+                      ref={colorInputRef}
+                      type="color"
+                      value={penColor}
+                      onChange={handleColorChange}
+                      className="hidden"
+                    />
+                  </div>
+                  
+                  {/* Clear Button */}
                   <button
                     onClick={clearCanvas}
-                    className="w-full px-4 py-2 border border-neutral-700 text-white rounded-lg font-medium hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2"
+                    className={cn(
+                      "w-full px-4 py-3 rounded-lg font-medium",
+                      "border border-neutral-700 text-neutral-300",
+                      "hover:bg-neutral-800 hover:text-white hover:border-neutral-600",
+                      "active:scale-[0.98]",
+                      "transition-all duration-200",
+                      "flex items-center justify-center gap-2"
+                    )}
                   >
                     <Trash2 className="w-4 h-4" />
                     Clear Canvas
@@ -431,26 +489,49 @@ export default function DrawingRecognitionPage() {
                 </div>
               </div>
 
-              {/* AI Generation */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-white">AI Enhancement</h3>
-                <div className="setting">
-                  <label className="block text-sm text-neutral-300 mb-2">
-                    Enhancement Prompt
-                  </label>
-                  <textarea
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Describe how you want to enhance your drawing..."
-                    className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-white text-sm resize-none focus:outline-none focus:border-neutral-600 transition-colors"
-                    rows={3}
-                  />
-                </div>
-                <div className="setting">
+              {/* AI Enhancement Card */}
+              <div className={cn(
+                "relative overflow-hidden rounded-2xl",
+                "bg-gradient-to-br from-neutral-900 to-neutral-900/80",
+                "border border-neutral-800",
+                "shadow-lg p-6"
+              )}>
+                <h3 className="text-lg font-semibold text-white mb-6">
+                  AI Enhancement
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-neutral-300">
+                      Enhancement Prompt
+                    </label>
+                    <textarea
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      placeholder="Describe how you want to enhance your drawing..."
+                      className={cn(
+                        "w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg",
+                        "text-white text-sm resize-none",
+                        "placeholder:text-neutral-500",
+                        "focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-neutral-600",
+                        "transition-all duration-200"
+                      )}
+                      rows={4}
+                    />
+                  </div>
+                  
                   <button
                     onClick={handleSubmit}
                     disabled={isLoading || !prompt.trim()}
-                    className="w-full px-4 py-2 bg-white text-black rounded-lg font-medium hover:bg-neutral-200 transition-colors disabled:bg-neutral-600 disabled:text-neutral-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className={cn(
+                      "w-full px-4 py-3 rounded-lg font-medium",
+                      "bg-white text-black",
+                      "hover:bg-neutral-100 active:scale-[0.98]",
+                      "disabled:bg-neutral-600 disabled:text-neutral-400 disabled:cursor-not-allowed",
+                      "transition-all duration-200",
+                      "flex items-center justify-center gap-2",
+                      "shadow-lg hover:shadow-xl"
+                    )}
                   >
                     {isLoading ? (
                       <>
@@ -467,40 +548,57 @@ export default function DrawingRecognitionPage() {
                 </div>
               </div>
 
-              {/* Generated Image Preview */}
-            
+
             </motion.div>
           </div>
         </div>
 
         {/* Error Modal */}
         {showErrorModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-xl max-w-md w-full p-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className={cn(
+                "bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl",
+                "max-w-md w-full p-6"
+              )}
+            >
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-bold text-white">
                   Generation Failed
                 </h3>
                 <button
                   onClick={closeErrorModal}
-                  className="text-neutral-400 hover:text-white transition-colors"
+                  className={cn(
+                    "text-neutral-400 hover:text-white transition-colors duration-200",
+                    "p-1 rounded-lg hover:bg-neutral-800"
+                  )}
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <p className="font-medium text-neutral-300">
+              <p className="text-neutral-300 mb-6 leading-relaxed">
                 {parseError(errorMessage)}
               </p>
-              <div className="mt-4">
-                <button
-                  onClick={closeErrorModal}
-                  className="w-full px-4 py-2 bg-white text-black rounded-lg font-medium hover:bg-neutral-200 transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
+              <button
+                onClick={closeErrorModal}
+                className={cn(
+                  "w-full px-4 py-3 bg-white text-black rounded-lg font-medium",
+                  "hover:bg-neutral-100 active:scale-[0.98]",
+                  "transition-all duration-200"
+                )}
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </>
