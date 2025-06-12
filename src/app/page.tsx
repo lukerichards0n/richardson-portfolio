@@ -143,8 +143,8 @@ export default function Home() {
       <HeroHighlight>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Mobile Layout */}
-          <div className="lg:hidden">
-            <div className="flex flex-col items-center text-center pt-70 pb-8 px-4">
+          <div className="lg:hidden h-screen flex flex-col">
+            <div className="flex flex-col justify-center flex-1 px-6 space-y-2">
               {/* Mobile Text Content - First */}
               <motion.div
                 initial={{
@@ -159,21 +159,16 @@ export default function Home() {
                   duration: 0.5,
                   ease: [0.4, 0.0, 0.2, 1],
                 }}
-                className="text-center mb-8"
               >
-                <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
-                  <div className="mb-2">Hello,</div>
-                  <div className="mb-4">I&apos;m Luke Richardson</div>
-                  <div className="flex flex-wrap items-center justify-center gap-1 text-2xl sm:text-3xl">
+                <h1 className="text-xl sm:text-2xl font-bold text-white leading-tight text-left">
+                  <div className="mb-1">Hello,</div>
+                  <div className="mb-2">I&apos;m Luke Richardson</div>
+                  <div className="flex items-center gap-2 text-base sm:text-lg">
                     <span>I&apos;m</span>
-                    <div className="relative w-[220px] sm:w-[280px] h-[2rem] sm:h-[2.5rem]">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <ContainerTextFlip 
-                          words={["an Electrical Engineer", "a PCB Designer", "a Firmware Developer", "a Problem Solver"]}
-                          className="text-2xl sm:text-3xl"
-                        />
-                      </div>
-                    </div>
+                    <ContainerTextFlip 
+                      words={["an Electrical Engineer", "a PCB Designer", "a Firmware Developer", "a Problem Solver"]}
+                      className="text-base sm:text-lg"
+                    />
                   </div>
                 </h1>
               </motion.div>
@@ -193,10 +188,10 @@ export default function Home() {
                   ease: [0.4, 0.0, 0.2, 1],
                   delay: 0.3,
                 }}
-                className="mb-8"
+                className="self-center"
               >
-                <div className="relative w-48 sm:w-56 aspect-[3/4]">
-                  <div className="glass-picture-card !h-48 sm:!h-56 lg:!h-[420px]">
+                <div className="relative w-40 sm:w-44 pt-8 aspect-[3/4]">
+                  <div className="glass-picture-card !h-44 sm:!h-44 lg:!h-[420px]">
                     <div className="glass-filter"></div>
                     <div className="glass-overlay"></div>
                     <div className="glass-specular"></div>
@@ -221,17 +216,17 @@ export default function Home() {
               </motion.div>
 
               {/* Mobile Description */}
-              <div className="mb-8">
-                <p className="text-base sm:text-lg text-neutral-300 max-w-sm mx-auto leading-relaxed">
+              <div className="self-center">
+                <p className="text-sm sm:text-base text-neutral-300 max-w-[280px] mx-auto leading-relaxed px-4 text-center">
                   Ready to innovate and solve real-world challenges
                 </p>
               </div>
 
               {/* Mobile Buttons - Last */}
-              <div className="flex flex-col gap-3 w-full max-w-sm">
+              <div className="flex flex-col gap-2 w-full max-w-[280px] px-4 self-center">
                 <HoverBorderGradient
                   containerClassName="rounded-full w-full"
-                  className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full"
+                  className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-4 py-2 font-medium text-sm w-full"
                   as={Link}
                   href="/projects"
                 >
@@ -240,7 +235,7 @@ export default function Home() {
                 </HoverBorderGradient>
                 <HoverBorderGradient
                   containerClassName="rounded-full w-full"
-                  className="dark:bg-black bg-neutral-100 text-neutral-700 dark:text-white flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full"
+                  className="dark:bg-black bg-neutral-100 text-neutral-700 dark:text-white flex items-center justify-center space-x-2 px-4 py-2 font-medium text-sm w-full"
                   as={Link}
                   href="/contact"
                 >

@@ -104,7 +104,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       )}
     >
       {/* Glass morphism layers */}
-      <div className="glass-filter absolute inset-0"></div>
+      <div className="glass-filter-nav absolute inset-0"></div>
       <div className="glass-overlay absolute inset-0"></div>
       <div className="glass-specular absolute inset-0"></div>
       
@@ -169,7 +169,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       )}
     >
       {/* Glass morphism layers */}
-      <div className="glass-filter absolute inset-0"></div>
+      <div className="glass-filter-nav absolute inset-0"></div>
       <div className="glass-overlay absolute inset-0"></div>
       <div className="glass-specular absolute inset-0"></div>
       
