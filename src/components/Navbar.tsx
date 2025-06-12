@@ -25,10 +25,10 @@ export default function Navbar({ className }: { className?: string }) {
               description="Interactive neural network visualization built with JavaScript"
             />
             <ProductItem
-              title="Drawing Recognition"
+              title="AI Co-Drawing"
               href="/projects"
               src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop"
-              description="AI-powered drawing recognition using machine learning"
+              description="AI-powered drawing collaboration tool"
             />
             <ProductItem
               title="Particle Simulator"

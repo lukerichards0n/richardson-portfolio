@@ -118,7 +118,7 @@ export default function ResumePage() {
             <h3 className="text-2xl font-semibold mb-4 text-white">Key Projects</h3>
             <ul className="list-disc list-inside text-neutral-300 space-y-2">
               <li>Neural Network Playground - Interactive ML visualization tool</li>
-              <li>Drawing Recognition App - AI-powered drawing classifier</li>
+              <li>AI Co-Drawing - AI-powered drawing collaboration tool</li>
               <li>Particle Physics Simulator - Real-time physics engine</li>
               <li>Motion Control Systems - Custom firmware for industrial applications</li>
             </ul>

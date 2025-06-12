@@ -22,9 +22,10 @@ export default function ProjectsPage() {
     },
     {
       category: "AI/ML • Interactive",
-      title: "Drawing Recognition App",
+      title: "AI Co-Drawing",
       src: "/drawing.png",
-      demoUrl: "#", // placeholder
+      demoUrl: "/projects/drawing-recognition",
+      docsUrl: "/projects/drawing-recognition/docs",
     },
     {
       category: "Physics • Interactive",
