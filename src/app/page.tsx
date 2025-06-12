@@ -141,8 +141,117 @@ export default function Home() {
     <div className="relative w-full">
       {/* Hero Section */}
       <HeroHighlight>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Mobile Layout */}
+          <div className="lg:hidden">
+            <div className="flex flex-col items-center text-center pt-70 pb-8 px-4">
+              {/* Mobile Text Content - First */}
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: [20, -5, 0],
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.4, 0.0, 0.2, 1],
+                }}
+                className="text-center mb-8"
+              >
+                <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+                  <div className="mb-2">Hello,</div>
+                  <div className="mb-4">I&apos;m Luke Richardson</div>
+                  <div className="flex flex-wrap items-center justify-center gap-1 text-2xl sm:text-3xl">
+                    <span>I&apos;m</span>
+                    <div className="relative w-[220px] sm:w-[280px] h-[2rem] sm:h-[2.5rem]">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <ContainerTextFlip 
+                          words={["an Electrical Engineer", "a PCB Designer", "a Firmware Developer", "a Problem Solver"]}
+                          className="text-2xl sm:text-3xl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </h1>
+              </motion.div>
+
+              {/* Mobile Photo - Second */}
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.95,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.4, 0.0, 0.2, 1],
+                  delay: 0.3,
+                }}
+                className="mb-8"
+              >
+                <div className="relative w-48 sm:w-56 aspect-[3/4]">
+                  <div className="glass-picture-card !h-48 sm:!h-56 lg:!h-[420px]">
+                    <div className="glass-filter"></div>
+                    <div className="glass-overlay"></div>
+                    <div className="glass-specular"></div>
+                    <div className="glass-picture-content">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src="/me.png"
+                          alt="Luke Richardson"
+                          fill
+                          className="object-contain object-bottom"
+                          style={{ 
+                            objectPosition: 'center bottom',
+                            paddingLeft: '12px',
+                            paddingRight: '12px',
+                          }}
+                          priority
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Mobile Description */}
+              <div className="mb-8">
+                <p className="text-base sm:text-lg text-neutral-300 max-w-sm mx-auto leading-relaxed">
+                  Ready to innovate and solve real-world challenges
+                </p>
+              </div>
+
+              {/* Mobile Buttons - Last */}
+              <div className="flex flex-col gap-3 w-full max-w-sm">
+                <HoverBorderGradient
+                  containerClassName="rounded-full w-full"
+                  className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full"
+                  as={Link}
+                  href="/projects"
+                >
+                  View My Work
+                  <IconArrowRight className="h-4 w-4" />
+                </HoverBorderGradient>
+                <HoverBorderGradient
+                  containerClassName="rounded-full w-full"
+                  className="dark:bg-black bg-neutral-100 text-neutral-700 dark:text-white flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full"
+                  as={Link}
+                  href="/contact"
+                >
+                  Get In Touch
+                </HoverBorderGradient>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Unchanged */}
+          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
               initial={{
                 opacity: 0,
@@ -196,7 +305,7 @@ export default function Home() {
               </div>
             </motion.div>
             
-            {/* Photo Card */}
+            {/* Desktop Photo Card */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -242,7 +351,7 @@ export default function Home() {
       </HeroHighlight>
 
       {/* About Section */}
-      <section className="py-20 px-4 bg-black">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-black">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -250,36 +359,36 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center px-4 sm:px-0">
             Engineering Solutions That Make a Difference
           </h2>
-          <p className="text-lg text-neutral-300 text-center leading-relaxed mb-6">
+          <p className="text-base sm:text-lg text-neutral-300 text-center leading-relaxed mb-4 sm:mb-6 px-4 sm:px-0">
             I am a highly motivated and detail-oriented electrical engineer with a strong passion for solving real-world problems through innovative solutions. 
             My experience spans a range of projects and clients, showcasing my ability to apply technical knowledge in practical settings.
           </p>
-          <p className="text-lg text-neutral-300 text-center leading-relaxed mb-8">
+          <p className="text-base sm:text-lg text-neutral-300 text-center leading-relaxed mb-8 sm:mb-8 px-4 sm:px-0">
             Beyond my technical abilities, I am a strong communicator and team player. 
             I believe that collaboration is key to achieving innovative solutions, and I am always eager to learn from others and share my own insights.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">10+</div>
-              <p className="text-neutral-400">Projects Delivered</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-6 mt-8 sm:mt-12 px-4 sm:px-0">
+            <div className="text-center py-4 sm:py-0">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">10+</div>
+              <p className="text-neutral-400 text-sm sm:text-base">Projects Delivered</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">5+</div>
-              <p className="text-neutral-400">Years Experience</p>
+            <div className="text-center py-4 sm:py-0">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">5+</div>
+              <p className="text-neutral-400 text-sm sm:text-base">Years Experience</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">100%</div>
-              <p className="text-neutral-400">Client Satisfaction</p>
+            <div className="text-center py-4 sm:py-0">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">100%</div>
+              <p className="text-neutral-400 text-sm sm:text-base">Client Satisfaction</p>
             </div>
           </div>
         </motion.div>
       </section>
 
       {/* Experience Timeline */}
-      <section className="py-20 bg-neutral-950">
+      <section className="py-16 sm:py-20 bg-neutral-950">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -291,7 +400,7 @@ export default function Home() {
       </section>
 
       {/* Services Section with Glowing Effect */}
-      <section className="py-20 px-4 bg-neutral-950">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-neutral-950">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -299,13 +408,13 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-center px-4 sm:px-0">
             What I Can Do For You
           </h2>
-          <p className="text-lg text-neutral-300 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-neutral-300 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 sm:px-0">
             From concept to completion, I provide comprehensive engineering solutions
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -323,10 +432,10 @@ export default function Home() {
                     proximity={64}
                     inactiveZone={0.01}
                   />
-                  <div className="relative h-full rounded-xl bg-neutral-900 p-6 transition-colors">
-                    <div className="text-white mb-4">{service.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
-                    <p className="text-neutral-300 text-sm">{service.description}</p>
+                  <div className="relative h-full rounded-xl bg-neutral-900 p-4 sm:p-6 transition-colors">
+                    <div className="text-white mb-3 sm:mb-4">{service.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">{service.title}</h3>
+                    <p className="text-neutral-300 text-sm leading-relaxed">{service.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -336,7 +445,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects with Glowing Effect */}
-      <section className="py-20 px-4 bg-black">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-black">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -344,13 +453,13 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-center px-4 sm:px-0">
             Featured Projects
           </h2>
-          <p className="text-lg text-neutral-300 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-neutral-300 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 sm:px-0">
             A selection of my recent work showcasing diverse technical challenges
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.title}
@@ -369,22 +478,22 @@ export default function Home() {
                       proximity={64}
                       inactiveZone={0.01}
                     />
-                    <div className="relative h-full rounded-xl bg-neutral-900 p-6">
-                      <div className="text-sm text-neutral-500 mb-2">{project.category}</div>
-                      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-neutral-200">
+                    <div className="relative h-full rounded-xl bg-neutral-900 p-4 sm:p-6">
+                      <div className="text-xs sm:text-sm text-neutral-500 mb-2">{project.category}</div>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white group-hover:text-neutral-200">
                         {project.title}
                       </h3>
-                      <p className="text-neutral-300 text-sm">{project.description}</p>
+                      <p className="text-neutral-300 text-sm leading-relaxed">{project.description}</p>
                     </div>
                   </div>
                 </Link>
               </motion.div>
             ))}
           </div>
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <Link 
               href="/projects"
-              className="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors"
+              className="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors text-sm sm:text-base"
             >
               View All Projects
               <IconArrowRight className="h-4 w-4" />
@@ -394,7 +503,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-black">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-black">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -402,10 +511,10 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-7xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-center px-4 sm:px-0">
             What Clients Say
           </h2>
-          <p className="text-lg text-neutral-300 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-neutral-300 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 sm:px-0">
             Trusted by companies to deliver exceptional engineering solutions
           </p>
           <InfiniteMovingCards
@@ -417,7 +526,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-neutral-950">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-neutral-950">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -425,17 +534,17 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4 sm:px-0">
             Ready to Start Your Next Project?
           </h2>
-          <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-neutral-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-4 sm:px-0">
             I&apos;m always interested in hearing about new opportunities and challenging projects. 
             Let&apos;s work together to bring your ideas to life.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
             <HoverBorderGradient
-              containerClassName="rounded-full"
-              className="dark:bg-white bg-white text-black flex items-center space-x-2 px-6 py-3 font-medium"
+              containerClassName="rounded-full w-full sm:w-auto"
+              className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full sm:w-auto"
               as={Link}
               href="/contact"
             >
@@ -443,8 +552,8 @@ export default function Home() {
               <IconArrowRight className="h-4 w-4" />
             </HoverBorderGradient>
             <HoverBorderGradient
-              containerClassName="rounded-full"
-              className="dark:bg-black bg-neutral-900 text-white flex items-center space-x-2 px-6 py-3 font-medium"
+              containerClassName="rounded-full w-full sm:w-auto"
+              className="dark:bg-black bg-neutral-900 text-white flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm sm:text-base w-full sm:w-auto"
               as={Link}
               href="/resume"
             >
