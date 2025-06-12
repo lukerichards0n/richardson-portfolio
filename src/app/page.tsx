@@ -3,13 +3,12 @@ import { motion } from "motion/react";
 import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 import { Timeline } from "@/components/ui/timeline";
 import Footer from "@/components/ui/footer";
-import { IconArrowRight, IconDevices, IconCode, IconCpu, IconRocket, IconBolt, IconCloud, IconDatabase } from "@tabler/icons-react";
+import { IconArrowRight, IconDevices, IconCode, IconCpu, IconRocket } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -78,45 +77,6 @@ export default function Home() {
       quote: "The custom firmware solution Luke developed for our IoT device was elegant and efficient. He has a rare combination of hardware and software expertise.",
       name: "David Park",
       title: "Product Manager, Connected Devices",
-    },
-  ];
-
-  const bentoItems = [
-    {
-      title: "PCB Design Excellence",
-      description: "From schematic capture to layout optimization, delivering production-ready designs",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconDevices className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "Embedded Systems",
-      description: "Firmware development for microcontrollers and real-time systems",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconCpu className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "Motion Control",
-      description: "Advanced control systems for precision motion and automation",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconBolt className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "IoT Solutions",
-      description: "Connected device development with cloud integration capabilities",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconCloud className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "Signal Processing",
-      description: "Digital signal processing and data acquisition systems",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconDatabase className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "Rapid Prototyping",
-      description: "Quick iteration from concept to working prototype",
-      header: <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>,
-      icon: <IconRocket className="h-4 w-4 text-neutral-500" />,
     },
   ];
 
