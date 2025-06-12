@@ -14,7 +14,7 @@ function parseError(error: string) {
     const e = m ? m[1] : error;
     const err = JSON.parse(e);
     return err.message || error;
-  } catch (e) {
+  } catch (_) {
     return error;
   }
 }
@@ -53,7 +53,7 @@ export default function DrawingRecognitionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [customApiKey, setCustomApiKey] = useState("");
+  const [customApiKey] = useState("");
 
   /* --------------------------- Environment Keys --------------------------- */
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? "";
@@ -305,9 +305,10 @@ export default function DrawingRecognitionPage() {
         setErrorMessage("Failed to generate image. Please try again.");
         setShowErrorModal(true);
       }
-    } catch (error: any) {
-      console.error("Error submitting drawing:", error);
-      setErrorMessage(error.message || "An unexpected error occurred.");
+    } catch (err) {
+      console.error("Error submitting drawing:", err);
+      const message = err instanceof Error ? err.message : "An unexpected error occurred.";
+      setErrorMessage(message);
       setShowErrorModal(true);
     } finally {
       setIsLoading(false);
