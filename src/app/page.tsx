@@ -456,36 +456,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Skills Bento Grid */}
-      <section className="py-20 px-4 bg-neutral-950">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="max-w-7xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            Technical Expertise
-          </h2>
-          <p className="text-lg text-neutral-300 text-center mb-12 max-w-2xl mx-auto">
-            Comprehensive skills across hardware and software domains
-          </p>
-          <BentoGrid className="max-w-5xl mx-auto">
-            {bentoItems.map((item, i) => (
-              <BentoGridItem
-                key={i}
-                title={item.title}
-                description={item.description}
-                header={item.header}
-                icon={item.icon}
-                className={i === 0 || i === 3 ? "md:col-span-2" : ""}
-              />
-            ))}
-          </BentoGrid>
-        </motion.div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 px-4 bg-neutral-950">
         <motion.div

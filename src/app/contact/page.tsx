@@ -51,7 +51,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-semibold mb-6">Let's Work Together</h2>
+            <h2 className="text-2xl font-semibold mb-6">Let&apos;s Work Together</h2>
             <p className="text-neutral-300 mb-8 leading-relaxed">
               I am passionate about collaborating on innovative projects and using my electrical engineering skills to solve real-world challenges. 
               Whether you have a specific project in mind or just want to explore potential opportunities, I am excited to connect with you.
