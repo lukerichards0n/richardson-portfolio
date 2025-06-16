@@ -115,7 +115,7 @@ export default function TetrisPage() {
       });
     });
     
-    let completedLines: number[] = [];
+    const completedLines: number[] = [];
     newBoard.forEach((row, y) => {
       if (row.every(cell => cell.value)) {
         completedLines.push(y);
@@ -194,7 +194,7 @@ export default function TetrisPage() {
   const hardDrop = useCallback(() => {
     if (!currentPiece || gameState !== 'playing') return;
     
-    let finalPosition = { ...currentPosition };
+    const finalPosition = { ...currentPosition };
     while (!checkCollision(currentPiece, { x: finalPosition.x, y: finalPosition.y + 1 })) {
       finalPosition.y++;
     }

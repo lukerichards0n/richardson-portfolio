@@ -64,8 +64,9 @@ export const MagneticGridItem = ({
   const { mouseX, mouseY } = useContext(MouseContext);
 
   const position = useTransform(
-    [mouseX, mouseY] as MotionValue<number>[],
-    ([newX, newY]) => {
+    [mouseX, mouseY],
+    (values: number[]) => {
+      const [newX, newY] = values;
       if (!ref.current || newX === Infinity || newY === Infinity) {
         return { x: 0, y: 0 };
       }

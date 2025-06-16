@@ -5,6 +5,7 @@ import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { LinkPreview } from "@/components/ui/link-preview";
 
 import { Timeline } from "@/components/ui/timeline";
 import Footer from "@/components/ui/footer";
@@ -118,7 +119,7 @@ export default function Home() {
       ),
     },
     {
-      title: "2022 - Current",
+      title: "2022 - 2024",
       content: (
         <div>
           <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">
@@ -131,6 +132,25 @@ export default function Home() {
             <li>Spearheaded the design, development, and integration of motion control systems, firmware, and UI/UX elements</li>
             <li>Produced comprehensive documentation and delivered fully functional projects to clients</li>
             <li>Worked with various projects from conception to final delivery</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "2024 - Current",
+      content: (
+        <div>
+          <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">
+            Co-founder, Sunlab Digital
+          </h3>
+          <p className="mb-4 text-sm md:text-base text-neutral-300">
+            Founded Sunlab Digital to be the kind of partner we&apos;d want for ourselves - one that operates with complete transparency, sticks to clear timelines, and provides fast, responsive communications.
+          </p>
+          <ul className="list-disc list-inside text-sm md:text-base text-neutral-300 space-y-2">
+            <li>Built an integrated hardware and software development company specializing in end-to-end product solutions</li>
+            <li>Established comprehensive service offerings including PCB design, firmware development, AI engineering, and growth marketing</li>
+            <li>Developed innovative solutions across multiple industries including smart parking systems, project management platforms, and vehicle safety devices</li>
+            <li>Created a streamlined approach that transforms client ideas into reality through engineering and marketing excellence</li>
           </ul>
         </div>
       ),
@@ -391,6 +411,237 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <Timeline data={timelineData} />
+        </motion.div>
+      </section>
+
+      {/* Sunlab Digital Section */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-black">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4 sm:px-0">
+              Introducing Sunlab Digital
+            </h2>
+            <p className="text-base sm:text-lg text-neutral-300 max-w-3xl mx-auto px-4 sm:px-0">
+              My latest venture - bringing bright ideas to life through integrated engineering and marketing solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            {/* Company Description */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-white">
+                Your Expert Partner in Product Development
+              </h3>
+              <p className="text-neutral-300 mb-6 leading-relaxed">
+                Sunlab Digital is the culmination of my experience in engineering and design. We specialize in transforming 
+                ideas into reality through our integrated approach that combines hardware development, software solutions, 
+                and strategic marketing.
+              </p>
+              <p className="text-neutral-300 mb-6 leading-relaxed">
+                We founded Sunlab Digital to be the kind of partner we&apos;d want for ourselves - one that operates with 
+                complete transparency, sticks to clear timelines, and provides fast, responsive communications.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <HoverBorderGradient
+                  containerClassName="rounded-full w-full sm:w-auto"
+                  className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm w-full sm:w-auto"
+                  as={Link}
+                  href="https://sunlabdigital.com"
+                >
+                  Visit Sunlab Digital
+                  <IconArrowRight className="h-4 w-4" />
+                </HoverBorderGradient>
+              </div>
+            </motion.div>
+
+            {/* Services Grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
+              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
+                  <IconDevices className="h-6 w-6 text-white mb-3" />
+                  <h4 className="text-white font-semibold mb-2">Hardware Development</h4>
+                  <p className="text-neutral-300 text-sm">PCB design, 3D printing, prototyping, and CAD</p>
+                </div>
+              </div>
+
+              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
+                  <IconCode className="h-6 w-6 text-white mb-3" />
+                  <h4 className="text-white font-semibold mb-2">Software Development</h4>
+                  <p className="text-neutral-300 text-sm">Web apps, mobile solutions, and custom applications</p>
+                </div>
+              </div>
+
+              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
+                  <IconCpu className="h-6 w-6 text-white mb-3" />
+                  <h4 className="text-white font-semibold mb-2">AI Engineering</h4>
+                  <p className="text-neutral-300 text-sm">Machine learning, NLP, and computer vision</p>
+                </div>
+              </div>
+
+              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
+                  <IconRocket className="h-6 w-6 text-white mb-3" />
+                  <h4 className="text-white font-semibold mb-2">Growth Marketing</h4>
+                  <p className="text-neutral-300 text-sm">SEO, paid advertising, and digital strategy</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Case Studies Preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-white">
+              Recent Sunlab Digital Projects
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
+              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wide">AI Engineering • 2023</span>
+                  </div>
+                </div>
+                <LinkPreview 
+                  url="https://sunlabdigital.com/our-work/developing-an-ai-system-for-smart-parking/"
+                  className="hover:text-green-400 transition-colors"
+                >
+                  <h4 className="text-white font-semibold mb-3 group-hover:text-green-400 transition-colors">
+                    AI System for Smart Parking
+                  </h4>
+                </LinkPreview>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  An intelligent system that identifies open parking spaces using AI vision and computer vision, 
+                  making parking management smarter and the user experience seamless.
+                </p>
+              </div>
+
+              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Hardware • 2024</span>
+                  </div>
+                </div>
+                <LinkPreview 
+                  url="https://sunlabdigital.com/our-work/engineering-an-automated-motion-control-system/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  <h4 className="text-white font-semibold mb-3 group-hover:text-blue-400 transition-colors">
+                    Automated Motion Control System
+                  </h4>
+                </LinkPreview>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Developing a motion control system with an intuitive interface for precise, automated fabrication, 
+                  reducing manual work and improving accuracy for construction applications.
+                </p>
+              </div>
+
+              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Software • 2024</span>
+                  </div>
+                </div>
+                <LinkPreview 
+                  url="https://sunlabdigital.com/our-work/building-a-custom-project-management-platform/"
+                  className="hover:text-purple-400 transition-colors"
+                >
+                  <h4 className="text-white font-semibold mb-3 group-hover:text-purple-400 transition-colors">
+                    Custom Project Management Platform
+                  </h4>
+                </LinkPreview>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Empowering field technicians with intelligent routing and streamlined record-keeping. 
+                  A seamless platform designed for peak operational performance.
+                </p>
+              </div>
+
+              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Hardware + Software • 2022</span>
+                  </div>
+                </div>
+                <LinkPreview 
+                  url="https://sunlabdigital.com/our-work/building-a-patented-vehicle-safety-device/"
+                  className="hover:text-red-400 transition-colors"
+                >
+                  <h4 className="text-white font-semibold mb-3 group-hover:text-red-400 transition-colors">
+                    Patented Vehicle Safety Device
+                  </h4>
+                </LinkPreview>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Engineering a connected lock box to restrict vehicle key access and combat drunk driving. 
+                  A patented hardware and software solution for enhanced road safety.
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-8">
+              <LinkPreview 
+                url="https://sunlabdigital.com/our-work"
+                className="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors text-sm font-medium"
+              >
+                View All Sunlab Digital Projects
+                <IconArrowRight className="h-4 w-4" />
+              </LinkPreview>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
