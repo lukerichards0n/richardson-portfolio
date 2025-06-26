@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { LoaderCircle, SendHorizontal, Trash2, X, Palette } from "lucide-react";
 import Link from "next/link";
-import { Content, GoogleGenAI, Modality } from "@google/genai";
 import { cn } from "@/lib/utils";
 
 function parseError(error: string) {
@@ -65,13 +64,6 @@ export default function DrawingRecognitionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [customApiKey] = useState("");
-
-  /* --------------------------- Environment Keys --------------------------- */
-  const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? "";
-
-  // Initialize AI client
-  const ai = new GoogleGenAI({ apiKey: customApiKey || GOOGLE_API_KEY });
 
   /* ------------------------------- Canvas FX ------------------------------ */
   // Load background image when generatedImage changes
@@ -264,57 +256,26 @@ export default function DrawingRecognitionPage() {
 
       const drawingData = tempCanvas.toDataURL("image/png").split(",")[1];
 
-      let contents: Content[] = [
-        {
-          role: "USER",
-          parts: [{ text: prompt }],
+      // Call our API route instead of Google AI directly
+      const response = await fetch("/api/generate-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      ];
-
-      if (drawingData) {
-        contents = [
-          {
-            role: "USER",
-            parts: [{ inlineData: { data: drawingData, mimeType: "image/png" } }],
-          },
-          {
-            role: "USER",
-            parts: [{ text: `${prompt}. Keep the same minimal line doodle style.` }],
-          },
-        ];
-      }
-
-      const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash-preview-image-generation",
-        contents,
-        config: {
-          responseModalities: [Modality.TEXT, Modality.IMAGE],
-        },
+        body: JSON.stringify({
+          prompt,
+          drawingData,
+        }),
       });
 
-      const data = {
-        success: true,
-        message: "",
-        imageData: null as string | null,
-        error: undefined,
-      };
+      const data = await response.json();
 
-      if (response.candidates?.[0]?.content?.parts) {
-        for (const part of response.candidates[0].content.parts) {
-          if (part.text) {
-            data.message = part.text;
-          } else if (part.inlineData?.data) {
-            data.imageData = part.inlineData.data;
-          }
-        }
-      }
-
-      if (data.success && data.imageData) {
+      if (response.ok && data.success !== false && data.imageData) {
         const imageUrl = `data:image/png;base64,${data.imageData}`;
         setGeneratedImage(imageUrl);
       } else {
         console.error("Failed to generate image:", data.error);
-        setErrorMessage("Failed to generate image. Please try again.");
+        setErrorMessage(data.error || "Failed to generate image. Please try again.");
         setShowErrorModal(true);
       }
     } catch (err) {
