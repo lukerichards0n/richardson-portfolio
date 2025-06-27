@@ -212,7 +212,7 @@ export default function NeuralNetworkPlayground() {
                 className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
               >
                 <h2 className="text-xl font-semibold text-white mb-4">Neural Network Structure</h2>
-                <div className="relative h-[400px] bg-neutral-950 rounded-xl overflow-hidden">
+                <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
                   {isClient && (
                     <>
                       <NetworkCanvas
@@ -232,7 +232,7 @@ export default function NeuralNetworkPlayground() {
                 className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
               >
                 <h2 className="text-xl font-semibold text-white mb-4">Classification Results</h2>
-                <div className="relative h-[400px] bg-neutral-950 rounded-xl overflow-hidden">
+                <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
                   {isClient && (
                     <>
                       <ResultsCanvas

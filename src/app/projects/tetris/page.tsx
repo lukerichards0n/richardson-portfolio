@@ -330,7 +330,7 @@ export default function TetrisPage() {
                 "shadow-xl p-6"
               )}>
                 <h3 className="text-lg font-semibold text-white mb-4">Next Piece</h3>
-                <div className="bg-black/30 rounded-xl p-4 h-32 flex items-center justify-center border border-neutral-800/50 backdrop-blur-sm">
+                <div className="bg-black/30 rounded-3xl p-4 h-32 flex items-center justify-center border border-neutral-800/50 backdrop-blur-sm">
                   {nextPiece && (
                     <div className="relative" style={{ 
                       width: `${nextPiece.shape[0].length * 24}px`,
@@ -412,7 +412,7 @@ export default function TetrisPage() {
               <div className="px-6 pb-6">
                 <div className="relative bg-black/50 rounded-2xl p-1 backdrop-blur-sm border border-neutral-800/50">
                   <div 
-                    className="relative bg-neutral-950 rounded-xl overflow-hidden"
+                    className="relative bg-neutral-950 rounded-3xl overflow-hidden"
                     style={{ 
                       width: `${COLS * BLOCK_SIZE}px`, 
                       height: `${ROWS * BLOCK_SIZE}px` 
@@ -504,7 +504,7 @@ export default function TetrisPage() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
-                          className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-xl flex items-center justify-center"
+                          className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-3xl flex items-center justify-center"
                         >
                           <div className="text-center">
                             <motion.h2

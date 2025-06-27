@@ -79,7 +79,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-800">
+            <div className="bg-neutral-900 rounded-3xl p-6 border border-neutral-800">
               <h3 className="font-semibold mb-3 text-white">What I Can Help With:</h3>
               <ul className="list-disc list-inside text-neutral-300 space-y-2 text-sm">
                 <li>Electrical system design and analysis</li>

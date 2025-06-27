@@ -6,6 +6,7 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { LinkPreview } from "@/components/ui/link-preview";
+import { MacbookScroll } from "@/components/ui/macbook-scroll";
 
 import { Timeline } from "@/components/ui/timeline";
 import Footer from "@/components/ui/footer";
@@ -387,7 +388,7 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-6 mt-8 sm:mt-12 px-4 sm:px-0">
             <div className="text-center py-4 sm:py-0">
-              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">10+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">20+</div>
               <p className="text-neutral-400 text-sm sm:text-base">Projects Delivered</p>
             </div>
             <div className="text-center py-4 sm:py-0">
@@ -415,233 +416,244 @@ export default function Home() {
       </section>
 
       {/* Sunlab Digital Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-black">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-black via-neutral-950 to-black relative overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#ffe176]/5 via-transparent to-[#ffe176]/5" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#ffe176]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#ffe176]/10 rounded-full blur-3xl" />
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="max-w-7xl mx-auto relative z-10"
         >
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4 sm:px-0">
-              Introducing Sunlab Digital
-            </h2>
-            <p className="text-base sm:text-lg text-neutral-300 max-w-3xl mx-auto px-4 sm:px-0">
-              My latest venture - bringing bright ideas to life through integrated engineering and marketing solutions
-            </p>
+          {/* Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ffe176]/10 border border-[#ffe176]/20 mb-6"
+            >
+              <div className="w-2 h-2 bg-[#ffe176] rounded-full animate-pulse" />
+              <span className="text-[#ffe176] text-sm font-medium">Latest Venture</span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 px-4"
+              style={{ color: '#ffe176', fontFamily: 'Apple Garamond, serif' }}
+            >
+              <span style={{ fontWeight: 400, fontStyle: 'normal', letterSpacing: '-0.04em' }}>
+                Sunlab
+              </span>
+              <span style={{ fontWeight: 400, fontStyle: 'normal', letterSpacing: '-0.1em' }}>
+                {' '}
+              </span>
+              <span style={{ fontWeight: 300, fontStyle: 'italic', letterSpacing: '-0.04em' }}>
+                Digital
+              </span>
+            </motion.h2>
+            
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-xl sm:text-2xl text-neutral-300 font-medium mb-6 px-4"
+            >
+              Introducing Our Consulting Agency
+            </motion.h3>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-xl text-neutral-300 max-w-3xl mx-auto px-4"
+            >
+              
+            </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+          {/* MacBook Scroll Component */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <MacbookScroll
+              
+              badge={
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffe176]/20 border border-[#ffe176]/30">
+                  <div className="w-2 h-2 bg-[#ffe176] rounded-full" />
+                  <span className="text-[#ffe176] text-xs font-medium">Sunlab Digital</span>
+                </div>
+              }
+              src="/sunlab.png"
+              showGradient={false}
+            />
+          </motion.div>
+
+          {/* Company Description & Services */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 px-4 mt-32 md:mt-120">
             {/* Company Description */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
+              className="space-y-6"
             >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-white">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffe176]/10 border border-[#ffe176]/20">
+                <span className="text-[#ffe176] text-sm font-medium">About Sunlab Digital</span>
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">
                 Your Expert Partner in Product Development
               </h3>
-              <p className="text-neutral-300 mb-6 leading-relaxed">
-                Sunlab Digital is the culmination of my experience in engineering and design. We specialize in transforming 
-                ideas into reality through our integrated approach that combines hardware development, software solutions, 
-                and strategic marketing.
-              </p>
-              <p className="text-neutral-300 mb-6 leading-relaxed">
-                We founded Sunlab Digital to be the kind of partner we&apos;d want for ourselves - one that operates with 
-                complete transparency, sticks to clear timelines, and provides fast, responsive communications.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              
+              <div className="space-y-4 text-neutral-300 leading-relaxed">
+                <p>
+                  Sunlab Digital is the culmination of my experience in engineering and design. We specialize in transforming 
+                  ideas into reality through our integrated approach that combines hardware development, software solutions, 
+                  and strategic marketing.
+                </p>
+                <p>
+                  We founded Sunlab Digital to be the kind of partner we'd want for ourselves - one that operates with 
+                  complete transparency, sticks to clear timelines, and provides fast, responsive communications.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
                 <HoverBorderGradient
-                  containerClassName="rounded-full w-full sm:w-auto"
-                  className="dark:bg-white bg-white text-black flex items-center justify-center space-x-2 px-6 py-3 font-medium text-sm w-full sm:w-auto"
+                  containerClassName="rounded-full"
+                  className="bg-[#ffe176] text-black hover:bg-[#ffe176]/90 flex items-center justify-center space-x-2 px-6 py-3 font-semibold text-sm transition-all duration-300"
                   as={Link}
                   href="https://sunlabdigital.com"
                 >
                   Visit Sunlab Digital
                   <IconArrowRight className="h-4 w-4" />
                 </HoverBorderGradient>
+                
+                <button className="flex items-center justify-center space-x-2 px-6 py-3 rounded-full border border-[#ffe176]/30 text-[#ffe176] hover:bg-[#ffe176]/10 transition-all duration-300">
+                  <span className="font-medium text-sm">View Projects</span>
+                  <IconArrowRight className="h-4 w-4" />
+                </button>
               </div>
             </motion.div>
 
             {/* Services Grid */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
-              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+              <div className="group relative rounded-3xl border border-neutral-800 bg-neutral-900 p-2">
                 <GlowingEffect
                   spread={40}
                   glow={true}
                   disabled={false}
                   proximity={64}
                   inactiveZone={0.01}
+                  variant="yellow"
                 />
-                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
-                  <IconDevices className="h-6 w-6 text-white mb-3" />
-                  <h4 className="text-white font-semibold mb-2">Hardware Development</h4>
-                  <p className="text-neutral-300 text-sm">PCB design, 3D printing, prototyping, and CAD</p>
+                <div className="relative rounded-3xl bg-neutral-900/50 p-6 hover:border-[#ffe176]/30 transition-all duration-300 backdrop-blur-sm">
+                  <div className="absolute inset-0  rounded-3xl" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-[#ffe176]/10 group-hover:bg-[#ffe176]/20 transition-colors duration-300">
+                        <IconDevices className="h-5 w-5 text-[#ffe176]" />
+                      </div>
+                      <h4 className="text-white font-semibold">Hardware Development</h4>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed">PCB design, 3D printing, prototyping, and CAD</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+              <div className="group relative rounded-3xl border border-neutral-800 bg-neutral-900 p-2">
                 <GlowingEffect
                   spread={40}
                   glow={true}
                   disabled={false}
                   proximity={64}
                   inactiveZone={0.01}
+                  variant="yellow"
                 />
-                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
-                  <IconCode className="h-6 w-6 text-white mb-3" />
-                  <h4 className="text-white font-semibold mb-2">Software Development</h4>
-                  <p className="text-neutral-300 text-sm">Web apps, mobile solutions, and custom applications</p>
+                <div className="relative rounded-3xl bg-neutral-900/50 p-6 hover:border-[#ffe176]/30 transition-all duration-300 backdrop-blur-sm">
+                  <div className="absolute inset-0  rounded-3xl" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-[#ffe176]/10 group-hover:bg-[#ffe176]/20 transition-colors duration-300">
+                        <IconCode className="h-5 w-5 text-[#ffe176]" />
+                      </div>
+                      <h4 className="text-white font-semibold">Software Development</h4>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed">Web apps, mobile solutions, and custom applications</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+              <div className="group relative rounded-3xl border border-neutral-800 bg-neutral-900 p-2">
                 <GlowingEffect
                   spread={40}
                   glow={true}
                   disabled={false}
                   proximity={64}
                   inactiveZone={0.01}
+                  variant="yellow"
                 />
-                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
-                  <IconCpu className="h-6 w-6 text-white mb-3" />
-                  <h4 className="text-white font-semibold mb-2">AI Engineering</h4>
-                  <p className="text-neutral-300 text-sm">Machine learning, NLP, and computer vision</p>
+                <div className="relative rounded-3xl bg-neutral-900/50 p-6 hover:border-[#ffe176]/30 transition-all duration-300 backdrop-blur-sm">
+                  <div className="absolute inset-0  rounded-3xl" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-[#ffe176]/10 group-hover:bg-[#ffe176]/20 transition-colors duration-300">
+                        <IconCpu className="h-5 w-5 text-[#ffe176]" />
+                      </div>
+                      <h4 className="text-white font-semibold">AI Engineering</h4>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed">Machine learning, NLP, and computer vision</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+              <div className="group relative rounded-3xl border border-neutral-800 bg-neutral-900 p-2">
                 <GlowingEffect
                   spread={40}
                   glow={true}
                   disabled={false}
                   proximity={64}
                   inactiveZone={0.01}
+                  variant="yellow"
                 />
-                <div className="relative h-full rounded-xl bg-neutral-900 p-4 transition-colors">
-                  <IconRocket className="h-6 w-6 text-white mb-3" />
-                  <h4 className="text-white font-semibold mb-2">Growth Marketing</h4>
-                  <p className="text-neutral-300 text-sm">SEO, paid advertising, and digital strategy</p>
+                <div className="relative rounded-3xl bg-neutral-900/50 p-6 hover:border-[#ffe176]/30 transition-all duration-300 backdrop-blur-sm">
+                  <div className="absolute inset-0  rounded-3xl" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-[#ffe176]/10 group-hover:bg-[#ffe176]/20 transition-colors duration-300">
+                        <IconRocket className="h-5 w-5 text-[#ffe176]" />
+                      </div>
+                      <h4 className="text-white font-semibold">Growth Marketing</h4>
+                    </div>
+                    <p className="text-neutral-400 text-sm leading-relaxed">SEO, paid advertising, and digital strategy</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Case Studies Preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-white">
-              Recent Sunlab Digital Projects
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
-              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-xs text-neutral-500 uppercase tracking-wide">AI Engineering • 2023</span>
-                  </div>
-                </div>
-                <LinkPreview 
-                  url="https://sunlabdigital.com/our-work/developing-an-ai-system-for-smart-parking/"
-                  className="hover:text-green-400 transition-colors"
-                >
-                  <h4 className="text-white font-semibold mb-3 group-hover:text-green-400 transition-colors">
-                    AI System for Smart Parking
-                  </h4>
-                </LinkPreview>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  An intelligent system that identifies open parking spaces using AI vision and computer vision, 
-                  making parking management smarter and the user experience seamless.
-                </p>
-              </div>
-
-              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Hardware • 2024</span>
-                  </div>
-                </div>
-                <LinkPreview 
-                  url="https://sunlabdigital.com/our-work/engineering-an-automated-motion-control-system/"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  <h4 className="text-white font-semibold mb-3 group-hover:text-blue-400 transition-colors">
-                    Automated Motion Control System
-                  </h4>
-                </LinkPreview>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Developing a motion control system with an intuitive interface for precise, automated fabrication, 
-                  reducing manual work and improving accuracy for construction applications.
-                </p>
-              </div>
-
-              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Software • 2024</span>
-                  </div>
-                </div>
-                <LinkPreview 
-                  url="https://sunlabdigital.com/our-work/building-a-custom-project-management-platform/"
-                  className="hover:text-purple-400 transition-colors"
-                >
-                  <h4 className="text-white font-semibold mb-3 group-hover:text-purple-400 transition-colors">
-                    Custom Project Management Platform
-                  </h4>
-                </LinkPreview>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Empowering field technicians with intelligent routing and streamlined record-keeping. 
-                  A seamless platform designed for peak operational performance.
-                </p>
-              </div>
-
-              <div className="bg-neutral-900 rounded-lg p-6 border border-neutral-800 hover:border-neutral-700 transition-colors group">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span className="text-xs text-neutral-500 uppercase tracking-wide">Hardware + Software • 2022</span>
-                  </div>
-                </div>
-                <LinkPreview 
-                  url="https://sunlabdigital.com/our-work/building-a-patented-vehicle-safety-device/"
-                  className="hover:text-red-400 transition-colors"
-                >
-                  <h4 className="text-white font-semibold mb-3 group-hover:text-red-400 transition-colors">
-                    Patented Vehicle Safety Device
-                  </h4>
-                </LinkPreview>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Engineering a connected lock box to restrict vehicle key access and combat drunk driving. 
-                  A patented hardware and software solution for enhanced road safety.
-                </p>
-              </div>
-            </div>
-            
-            <div className="mt-8">
-              <LinkPreview 
-                url="https://sunlabdigital.com/our-work"
-                className="inline-flex items-center gap-2 text-white hover:text-neutral-300 transition-colors text-sm font-medium"
-              >
-                View All Sunlab Digital Projects
-                <IconArrowRight className="h-4 w-4" />
-              </LinkPreview>
-            </div>
-          </motion.div>
+          
         </motion.div>
       </section>
 
@@ -670,7 +682,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2">
+                <div className="relative h-full rounded-3xl border border-neutral-800 bg-neutral-900 p-2">
                   <GlowingEffect
                     spread={40}
                     glow={true}
@@ -678,7 +690,7 @@ export default function Home() {
                     proximity={64}
                     inactiveZone={0.01}
                   />
-                  <div className="relative h-full rounded-xl bg-neutral-900 p-4 sm:p-6 transition-colors">
+                  <div className="relative h-full rounded-3xl bg-neutral-900 p-4 sm:p-6 transition-colors">
                     <div className="text-white mb-3 sm:mb-4">{service.icon}</div>
                     <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">{service.title}</h3>
                     <p className="text-neutral-300 text-sm leading-relaxed">{service.description}</p>
@@ -716,7 +728,7 @@ export default function Home() {
                 className="group"
               >
                 <Link href={project.link}>
-                  <div className="relative h-full rounded-xl border border-neutral-800 bg-neutral-900 p-2 hover:transform hover:scale-[1.02] transition-all">
+                  <div className="relative h-full rounded-3xl border border-neutral-800 bg-neutral-900 p-2 hover:transform hover:scale-[1.02] transition-all">
                     <GlowingEffect
                       spread={40}
                       glow={true}
@@ -724,7 +736,7 @@ export default function Home() {
                       proximity={64}
                       inactiveZone={0.01}
                     />
-                    <div className="relative h-full rounded-xl bg-neutral-900 p-4 sm:p-6">
+                    <div className="relative h-full rounded-3xl bg-neutral-900 p-4 sm:p-6">
                       <div className="text-xs sm:text-sm text-neutral-500 mb-2">{project.category}</div>
                       <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white group-hover:text-neutral-200">
                         {project.title}

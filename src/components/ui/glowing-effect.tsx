@@ -9,7 +9,7 @@ interface GlowingEffectProps {
   inactiveZone?: number;
   proximity?: number;
   spread?: number;
-  variant?: "default" | "white";
+  variant?: "default" | "white" | "yellow";
   glow?: boolean;
   className?: string;
   disabled?: boolean;
@@ -124,6 +124,7 @@ const GlowingEffect = memo(
             "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
             glow && "opacity-100",
             variant === "white" && "border-white",
+            variant === "yellow" && "border-[#ffe176]",
             disabled && "!block"
           )}
         />
@@ -143,6 +144,19 @@ const GlowingEffect = memo(
                   from 236.84deg at 50% 50%,
                   var(--black),
                   var(--black) calc(25% / var(--repeating-conic-gradient-times))
+                )`
+                  : variant === "yellow"
+                  ? `radial-gradient(circle,rgb(255, 225, 118) 10%, rgb(255, 225, 118)00 20%),
+                radial-gradient(circle at 40% 40%,rgb(255, 225, 118) 5%, rgb(255, 225, 118)00 15%),
+                radial-gradient(circle at 60% 60%,rgb(255, 225, 118) 10%, rgb(255, 225, 118)00 20%), 
+                radial-gradient(circle at 40% 60%, rgb(255, 225, 118) 10%, rgb(255, 225, 118)00 20%),
+                repeating-conic-gradient(
+                  from 236.84deg at 50% 50%,
+                  #ffe176 0%,
+                  #ffed9a calc(25% / var(--repeating-conic-gradient-times)),
+                  #ffd700 calc(50% / var(--repeating-conic-gradient-times)), 
+                  #ffe176 calc(75% / var(--repeating-conic-gradient-times)),
+                  #ffe176 calc(100% / var(--repeating-conic-gradient-times))
                 )`
                   : `radial-gradient(circle,rgb(255, 255, 255) 10%, rgb(255, 255, 255)00 20%),
                 radial-gradient(circle at 40% 40%,rgb(255, 255, 255) 5%, rgb(255, 255, 255)00 15%),

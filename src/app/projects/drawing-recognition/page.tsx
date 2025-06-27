@@ -346,7 +346,7 @@ export default function DrawingRecognitionPage() {
               </div>
               
               <div className={cn(
-                "relative bg-white rounded-xl overflow-hidden",
+                "relative bg-white rounded-3xl overflow-hidden",
                 "shadow-inner border border-neutral-200"
               )}>
                 <canvas

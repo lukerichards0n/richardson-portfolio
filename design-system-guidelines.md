@@ -747,7 +747,7 @@ export const BentoGridItem = ({ className, title, description, header, icon }) =
   return (
     <div
       className={cn(
-        "group/bento row-span-1 rounded-xl border border-transparent p-4",
+        "group/bento row-span-1 rounded-3xl border border-transparent p-4",
         "bg-white shadow-sm transition duration-200",
         "hover:shadow-xl dark:border-white/[0.2] dark:bg-black",
         className
@@ -832,7 +832,7 @@ export const GlassCard = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "relative rounded-xl border border-white/20",
+        "relative rounded-3xl border border-white/20",
         "bg-white/10 backdrop-blur-xl backdrop-saturate-150",
         "shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]",
         className
@@ -1014,7 +1014,7 @@ export const ExpandableCard = ({
     <motion.div
       layout
       className={cn(
-        "overflow-hidden rounded-xl border border-neutral-200 bg-white",
+        "overflow-hidden rounded-3xl border border-neutral-200 bg-white",
         "dark:border-neutral-800 dark:bg-neutral-900",
         "shadow-sm transition-shadow hover:shadow-md",
         className
