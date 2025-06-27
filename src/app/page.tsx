@@ -5,7 +5,7 @@ import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { LinkPreview } from "@/components/ui/link-preview";
+
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
 
 import { Timeline } from "@/components/ui/timeline";
@@ -528,7 +528,7 @@ export default function Home() {
                   and strategic marketing.
                 </p>
                 <p>
-                  We founded Sunlab Digital to be the kind of partner we'd want for ourselves - one that operates with 
+                  We founded Sunlab Digital to be the kind of partner we&apos;d want for ourselves - one that operates with 
                   complete transparency, sticks to clear timelines, and provides fast, responsive communications.
                 </p>
               </div>
