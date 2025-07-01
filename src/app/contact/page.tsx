@@ -34,9 +34,9 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Get In Touch</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Let's Build Something Amazing</h1>
           <p className="text-xl text-neutral-300">
-            Take your project to the next level
+            Ready to accelerate your product development? Let's discuss your next breakthrough project.
           </p>
         </motion.div>
       </section>
@@ -51,10 +51,11 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-semibold mb-6">Let&apos;s Work Together</h2>
+            <h2 className="text-2xl font-semibold mb-6">Partner with an Engineering Expert</h2>
             <p className="text-neutral-300 mb-8 leading-relaxed">
-              I am passionate about collaborating on innovative projects and using my electrical engineering skills to solve real-world challenges. 
-              Whether you have a specific project in mind or just want to explore potential opportunities, I am excited to connect with you.
+              I specialize in transforming complex technical challenges into market-ready solutions. From initial concept through production, 
+              I deliver engineering excellence that accelerates your timeline and reduces development costs. Let's discuss how I can help 
+              bring your innovative ideas to life.
             </p>
             
             <div className="space-y-4 mb-8">
@@ -80,13 +81,13 @@ export default function ContactPage() {
             </div>
 
             <div className="bg-neutral-900 rounded-3xl p-6 border border-neutral-800">
-              <h3 className="font-semibold mb-3 text-white">What I Can Help With:</h3>
+              <h3 className="font-semibold mb-3 text-white">Engineering Solutions I Deliver:</h3>
               <ul className="list-disc list-inside text-neutral-300 space-y-2 text-sm">
-                <li>Electrical system design and analysis</li>
-                <li>Embedded systems and firmware development</li>
-                <li>PCB design and prototyping</li>
-                <li>Product development consulting</li>
-                <li>Motion control systems</li>
+                <li>Production-ready PCB design and rapid prototyping</li>
+                <li>High-performance embedded systems and firmware</li>
+                <li>Precision motion control and automation systems</li>
+                <li>End-to-end product development and manufacturing support</li>
+                <li>AI integration and machine learning applications</li>
               </ul>
             </div>
           </motion.div>
@@ -98,7 +99,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="bg-neutral-900 rounded-2xl p-8 border border-neutral-800"
           >
-            <h2 className="text-2xl font-semibold mb-6">Send Me a Message</h2>
+            <h2 className="text-2xl font-semibold mb-6">Start Your Project Today</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-neutral-300">

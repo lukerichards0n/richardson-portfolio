@@ -6,11 +6,13 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
 import NetworkCanvas from "./NetworkCanvas";
 import ResultsCanvas from "./ResultsCanvas";
+import HandwritingCanvas from "./HandwritingCanvas";
+import HandwritingResultsCanvas from "./HandwritingResultsCanvas";
 import SettingsPanel from "./SettingsPanel";
 import Legend from "./Legend";
 import { NeuralNetwork, Problems } from "./NeuralNetwork";
 
-type ProblemType = "circle" | "spiral";
+type ProblemType = "circle" | "spiral" | "handwriting";
 
 export default function NeuralNetworkPlayground() {
   const [network, setNetwork] = useState<NeuralNetwork | null>(null);
@@ -19,19 +21,21 @@ export default function NeuralNetworkPlayground() {
   const [epoch, setEpoch] = useState(0);
   const [error, setError] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-  const [problemType, setProblemType] = useState<ProblemType>("spiral");
+  const [problemType, setProblemType] = useState<ProblemType>("handwriting");
   const [hiddenLayers, setHiddenLayers] = useState(3);
-  const [neuronsPerLayer, setNeuronsPerLayer] = useState(8);
-  const [learningRate, setLearningRate] = useState(0.03);
+  const [neuronsPerLayer, setNeuronsPerLayer] = useState(16);
+  const [learningRate, setLearningRate] = useState(0.01);
   const [activationFunction, setActivationFunction] = useState("tanh");
   const [isClient, setIsClient] = useState(false);
+  const [customTrainingData, setCustomTrainingData] = useState<Array<{input: number[], target: number[]}>>([]);
   
   const animationFrameRef = useRef<number | undefined>(undefined);
   const epochRef = useRef(0);
 
   const problemDescriptions: Record<ProblemType, string> = {
     circle: "Learning to identify points inside a circle. Points inside the circle belong to Class 1, while points outside belong to Class 0.",
-    spiral: "Learning to separate two interleaving spiral patterns. Each spiral represents a different class in this challenging non-linear classification problem."
+    spiral: "Learning to separate two interleaving spiral patterns. Each spiral represents a different class in this challenging non-linear classification problem.",
+    handwriting: "Learning to recognize handwritten digits 1, 2, and 3. Draw digits on the canvas to train the network and test recognition accuracy."
   };
 
   // Only run on client side
@@ -43,14 +47,21 @@ export default function NeuralNetworkPlayground() {
     if (isClient) {
       initializeNetwork();
     }
-  }, [hiddenLayers, neuronsPerLayer, isClient]);
+  }, [hiddenLayers, neuronsPerLayer, problemType, isClient]);
 
   useEffect(() => {
     epochRef.current = epoch;
   }, [epoch]);
 
   const initializeNetwork = () => {
-    const layers = [2, ...Array(hiddenLayers).fill(neuronsPerLayer), 1];
+    let layers;
+    if (problemType === "handwriting") {
+      // 28x28 pixel input (784), hidden layers, 3 outputs for digits 1, 2, 3
+      layers = [784, ...Array(hiddenLayers).fill(neuronsPerLayer), 3];
+    } else {
+      // 2D input for circle/spiral problems
+      layers = [2, ...Array(hiddenLayers).fill(neuronsPerLayer), 1];
+    }
     setNetwork(new NeuralNetwork(layers));
     setEpoch(0);
     setError(0);
@@ -68,9 +79,20 @@ export default function NeuralNetworkPlayground() {
       const error = network.backpropagate(input, target, learningRate, activationFunction);
       totalError += error;
 
-      const output = network.forward(input, activationFunction).activations.slice(-1)[0][0];
-      if (Math.round(output) === target[0]) {
-        correctPredictions++;
+      const output = network.forward(input, activationFunction).activations.slice(-1)[0];
+      
+      if (problemType === "handwriting") {
+        // For handwriting, find the index of the highest output (argmax)
+        const predictedClass = output.indexOf(Math.max(...output));
+        const actualClass = target.indexOf(Math.max(...target));
+        if (predictedClass === actualClass) {
+          correctPredictions++;
+        }
+      } else {
+        // For circle/spiral problems
+        if (Math.round(output[0]) === target[0]) {
+          correctPredictions++;
+        }
       }
     });
 
@@ -105,6 +127,7 @@ export default function NeuralNetworkPlayground() {
 
   const handleReset = () => {
     setIsTraining(false);
+    setCustomTrainingData([]);
     initializeNetwork();
   };
 
@@ -113,11 +136,25 @@ export default function NeuralNetworkPlayground() {
   };
 
   const handleCanvasClick = (x: number, y: number) => {
-    if (!network || isTraining) return;
+    if (!network || isTraining || problemType === "handwriting") return;
     
     const target = [Problems[problemType].evaluate(x, y)];
     network.backpropagate([x, y], target, learningRate, activationFunction);
   };
+
+  const handleTrainingSample = (pixels: number[], label: number) => {
+    const target = [0, 0, 0];
+    target[label - 1] = 1; // Convert to one-hot encoding
+    
+    const newSample = { input: pixels, target };
+    setCustomTrainingData(prev => [...prev, newSample]);
+    
+    // Train the network immediately with this sample
+    if (network) {
+      network.backpropagate(pixels, target, learningRate, activationFunction);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-black pt-20">
@@ -194,6 +231,12 @@ export default function NeuralNetworkPlayground() {
                     <div className="text-sm text-neutral-400 uppercase tracking-wider mb-1">Accuracy</div>
                     <div className="text-2xl font-bold text-white">{accuracy.toFixed(1)}%</div>
                   </div>
+                  {problemType === "handwriting" && (
+                    <div className="text-center">
+                      <div className="text-sm text-neutral-400 uppercase tracking-wider mb-1">Custom Samples</div>
+                      <div className="text-2xl font-bold text-white">{customTrainingData.length}</div>
+                    </div>
+                  )}
                 </div>
                 <div className="flex-1">
                   <p className="text-neutral-300">
@@ -204,49 +247,110 @@ export default function NeuralNetworkPlayground() {
             </motion.div>
 
             {/* Visualization Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
-              >
-                <h2 className="text-xl font-semibold text-white mb-4">Neural Network Structure</h2>
-                <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
-                  {isClient && (
-                    <>
-                      <NetworkCanvas
-                        network={network}
-                        className="absolute inset-0"
-                      />
-                      <Legend type="network" />
-                    </>
-                  )}
-                </div>
-              </motion.div>
+            {problemType === "handwriting" ? (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
+                  >
+                    <h2 className="text-xl font-semibold text-white mb-4">Draw Digits</h2>
+                    <div className="relative">
+                      {isClient && (
+                        <HandwritingCanvas
+                          network={network}
+                          className="w-full"
+                          onTrainingSample={handleTrainingSample}
+                        />
+                      )}
+                    </div>
+                  </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
-              >
-                <h2 className="text-xl font-semibold text-white mb-4">Classification Results</h2>
-                <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
-                  {isClient && (
-                    <>
-                      <ResultsCanvas
-                        network={network}
-                        problemType={problemType}
-                        className="absolute inset-0"
-                        onCanvasClick={handleCanvasClick}
-                      />
-                      <Legend type="results" />
-                    </>
-                  )}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
+                  >
+                    <h2 className="text-xl font-semibold text-white mb-4">Training Examples & Results</h2>
+                    <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
+                      {isClient && (
+                        <HandwritingResultsCanvas
+                          network={network}
+                          className="absolute inset-0"
+                        />
+                      )}
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            </div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
+                >
+                  <h2 className="text-xl font-semibold text-white mb-4">Neural Network Structure</h2>
+                  <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
+                    {isClient && (
+                      <>
+                        <NetworkCanvas
+                          network={network}
+                          className="absolute inset-0"
+                        />
+                        <Legend type="network" />
+                      </>
+                    )}
+                  </div>
+                </motion.div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
+                >
+                  <h2 className="text-xl font-semibold text-white mb-4">Neural Network Structure</h2>
+                  <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
+                    {isClient && (
+                      <>
+                        <NetworkCanvas
+                          network={network}
+                          className="absolute inset-0"
+                        />
+                        <Legend type="network" />
+                      </>
+                    )}
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6"
+                >
+                  <h2 className="text-xl font-semibold text-white mb-4">Classification Results</h2>
+                  <div className="relative h-[400px] bg-neutral-950 rounded-3xl overflow-hidden">
+                    {isClient && (
+                      <>
+                        <ResultsCanvas
+                          network={network}
+                          problemType={problemType}
+                          className="absolute inset-0"
+                          onCanvasClick={handleCanvasClick}
+                        />
+                        <Legend type="results" />
+                      </>
+                    )}
+                  </div>
+                </motion.div>
+              </div>
+            )}
           </div>
         </div>
       </div>

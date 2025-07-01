@@ -60,6 +60,7 @@ export default function SettingsPanel({
             onChange={(e) => setProblemType(e.target.value)}
             className="w-full px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-neutral-600 transition-colors"
           >
+            <option value="handwriting">Handwriting Recognition</option>
             <option value="spiral">Spiral Classification</option>
             <option value="circle">Circle Classification</option>
           </select>

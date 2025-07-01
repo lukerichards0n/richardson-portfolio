@@ -76,9 +76,9 @@ export default function ProjectsPage() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Projects</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Engineering Portfolio</h1>
           <p className="text-xl text-neutral-300">
-            A curated collection of my technical projects and demonstrations
+            Interactive demonstrations of breakthrough solutions across AI, embedded systems, and automation
           </p>
         </motion.div>
       </section>
@@ -92,7 +92,7 @@ export default function ProjectsPage() {
       >
         <div className="w-full max-w-7xl mx-auto px-4">
           <h2 className="text-xl md:text-3xl font-bold text-neutral-200 mb-8">
-            Explore My Work
+            Technical Innovations in Action
           </h2>
           <div className="relative">
             <div 
@@ -135,8 +135,8 @@ export default function ProjectsPage() {
           className="max-w-4xl mx-auto text-center"
         >
           <p className="text-lg text-neutral-300">
-            Each project represents a unique challenge and learning opportunity. 
-            Click on any project card to explore technical details, implementation approaches, and live demos.
+            Each project showcases advanced engineering solutions with measurable impact. 
+            Explore interactive demos, technical documentation, and implementation details that demonstrate real-world problem-solving.
           </p>
         </motion.div>
       </section>

@@ -15,9 +15,9 @@ export default function ResumePage() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Resume</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Professional Experience</h1>
           <p className="text-xl text-neutral-300 mb-8">
-            Electrical Engineer • Co-founder • Innovator • Problem Solver
+            Electrical Engineer • Entrepreneur • Product Developer • Technical Leader
           </p>
           <button className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-neutral-200 transition-colors">
             <IconDownload className="h-5 w-5" />
