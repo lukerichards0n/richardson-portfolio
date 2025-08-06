@@ -87,7 +87,7 @@ export const Problems = {
       
       return data;
     },
-    evaluate(x: number, y: number): number {
+    evaluate(): number {
       // This function is not used for handwriting recognition
       // Handwriting uses the network directly for classification
       return 0;

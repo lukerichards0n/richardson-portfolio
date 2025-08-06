@@ -34,9 +34,9 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Let's Build Something Amazing</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Let&apos;s Build Something Amazing</h1>
           <p className="text-xl text-neutral-300">
-            Ready to accelerate your product development? Let's discuss your next breakthrough project.
+            Ready to accelerate your product development? Let&apos;s discuss your next breakthrough project.
           </p>
         </motion.div>
       </section>
@@ -54,7 +54,7 @@ export default function ContactPage() {
             <h2 className="text-2xl font-semibold mb-6">Partner with an Engineering Expert</h2>
             <p className="text-neutral-300 mb-8 leading-relaxed">
               I specialize in transforming complex technical challenges into market-ready solutions. From initial concept through production, 
-              I deliver engineering excellence that accelerates your timeline and reduces development costs. Let's discuss how I can help 
+              I deliver engineering excellence that accelerates your timeline and reduces development costs. Let&apos;s discuss how I can help 
               bring your innovative ideas to life.
             </p>
             

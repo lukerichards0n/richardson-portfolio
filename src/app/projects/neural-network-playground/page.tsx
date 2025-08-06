@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "motion/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
@@ -38,22 +38,7 @@ export default function NeuralNetworkPlayground() {
     handwriting: "Learning to recognize handwritten digits 1, 2, and 3. Draw digits on the canvas to train the network and test recognition accuracy."
   };
 
-  // Only run on client side
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (isClient) {
-      initializeNetwork();
-    }
-  }, [hiddenLayers, neuronsPerLayer, problemType, isClient]);
-
-  useEffect(() => {
-    epochRef.current = epoch;
-  }, [epoch]);
-
-  const initializeNetwork = () => {
+  const initializeNetwork = useCallback(() => {
     let layers;
     if (problemType === "handwriting") {
       // 28x28 pixel input (784), hidden layers, 3 outputs for digits 1, 2, 3
@@ -66,9 +51,20 @@ export default function NeuralNetworkPlayground() {
     setEpoch(0);
     setError(0);
     setAccuracy(0);
-  };
+  }, [problemType, hiddenLayers, neuronsPerLayer]);
 
-  const trainStep = () => {
+  // Only run on client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      initializeNetwork();
+    }
+  }, [hiddenLayers, neuronsPerLayer, problemType, isClient, initializeNetwork]);
+
+  const trainStep = useCallback(() => {
     if (!network) return;
     
     const trainingData = Problems[problemType].generateData();
@@ -102,7 +98,11 @@ export default function NeuralNetworkPlayground() {
     setEpoch(prev => prev + 1);
     setError(avgError);
     setAccuracy(newAccuracy);
-  };
+  }, [network, problemType, learningRate, activationFunction]);
+
+  useEffect(() => {
+    epochRef.current = epoch;
+  }, [epoch]);
 
   useEffect(() => {
     if (!isTraining || isPaused || !network || !isClient) return;
@@ -119,7 +119,7 @@ export default function NeuralNetworkPlayground() {
         window.cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isTraining, isPaused, network, learningRate, activationFunction, problemType, isClient]);
+  }, [isTraining, isPaused, network, learningRate, activationFunction, problemType, isClient, trainStep]);
 
   const handleStartTraining = () => {
     setIsTraining(!isTraining);

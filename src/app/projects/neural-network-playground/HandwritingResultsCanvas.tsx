@@ -44,7 +44,6 @@ export default function HandwritingResultsCanvas({
       // Calculate grid layout
       const samplesPerClass = 5; // Show 5 examples per digit
       const digitSize = 40;
-      const margin = 20;
       const spacing = 10;
       
       const totalWidth = samplesPerClass * (digitSize + spacing) - spacing;

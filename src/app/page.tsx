@@ -773,7 +773,7 @@ export default function Home() {
             Client Success Stories
           </h2>
           <p className="text-base sm:text-lg text-neutral-300 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 sm:px-0">
-            Real results from companies who've accelerated their product development with my engineering expertise
+            Real results from companies who&apos;ve accelerated their product development with my engineering expertise
           </p>
           <InfiniteMovingCards
             items={testimonials}
@@ -796,7 +796,7 @@ export default function Home() {
             Ready to Accelerate Your Product Development?
           </h2>
           <p className="text-base sm:text-lg text-neutral-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-4 sm:px-0">
-            Let's discuss how my engineering expertise can help you overcome technical challenges, reduce development time, 
+            Let&apos;s discuss how my engineering expertise can help you overcome technical challenges, reduce development time, 
             and bring your innovative products to market faster.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">

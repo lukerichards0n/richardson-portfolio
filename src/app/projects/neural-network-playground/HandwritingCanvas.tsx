@@ -29,7 +29,6 @@ export default function HandwritingCanvas({
     if (!ctx) return;
 
     // Set up canvas
-    const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     
     canvas.width = 280 * dpr; // 28x28 grid scaled up 10x
